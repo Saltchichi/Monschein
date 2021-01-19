@@ -23,8 +23,8 @@ class GithubRepository : GithubRepository {
         }
     }
 
-    override suspend fun getRepositories(login: String): List<RepoShort> {
-        return api.getUserRepo(login).map {
+    override suspend fun getRepositories(name: String): List<RepoShort> {
+        return api.getUserRepo(name).map {
             it.toRepoShort()
         }
     }
@@ -36,8 +36,7 @@ fun GithubRepoShort.toRepoShort() = RepoShort(
     this.id,
     this.name,
     this.description,
-    this.language,
-    this.fork,
+    this.langage,
+    this.forks,
     this.watchers,
-    this.license
 )

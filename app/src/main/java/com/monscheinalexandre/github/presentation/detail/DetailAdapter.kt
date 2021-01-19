@@ -19,17 +19,17 @@ class DetailAdapter(context: Context) :
     override fun getItemCount() = repos.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(inflater.inflate(R.layout.item_user, parent, false))
+        return ViewHolder(inflater.inflate(R.layout.item_repo, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(repos[position])
     }
 
-    fun setData(users: List<RepoShort>?) {
+    fun setData(repos: List<RepoShort>?) {
         this.repos.clear()
 
-        users?.let {
+        repos?.let {
             this.repos.addAll(repos)
         }
 
@@ -39,20 +39,18 @@ class DetailAdapter(context: Context) :
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        private val name: TextView = view.findViewById(R.id.name)
+        private val name: TextView = view.findViewById(R.id.name_detail)
         private val description: TextView = view.findViewById(R.id.description_detail)
         private val langage: TextView = view.findViewById(R.id.langage_detail)
         private val forks: TextView = view.findViewById(R.id.forks_detail)
         private val watchers: TextView = view.findViewById(R.id.watchers_detail)
-        private val licence: TextView = view.findViewById(R.id.licence_detail)
 
         fun bind(repoShort: RepoShort) {
             name.text = repoShort.name
             description.text = repoShort.description
             langage.text = repoShort.langage
-            forks.text = repoShort.forks
-            watchers.text = repoShort.watchers
-            licence.text = repoShort.licence
+            forks.text = repoShort.forks.toString()
+            watchers.text = repoShort.watchers.toString()
         }
 
     }

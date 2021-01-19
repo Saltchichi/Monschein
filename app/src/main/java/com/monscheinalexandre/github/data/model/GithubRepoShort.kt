@@ -8,13 +8,11 @@ data class GithubRepoShort(
     @SerializedName("name")
     val name: String,
     @SerializedName("description")
-    val description: String,
+    val description: String?,
     @SerializedName("language")
-    val language: String,
-    @SerializedName("fork")
-    val fork: String,
+    val langage: String?,
+    @SerializedName("forks")
+    val forks: Int,
     @SerializedName("watchers")
-    val watchers: String,
-    @SerializedName("license")
-    val license: String,
+    val watchers: Int,
 )

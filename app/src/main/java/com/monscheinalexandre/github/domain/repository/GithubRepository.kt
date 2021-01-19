@@ -7,6 +7,6 @@ interface GithubRepository {
 
     suspend fun searchUser(search: String): List<UserShort>
 
-    suspend fun getRepositories(search: String): List<RepoShort>
+    suspend fun getRepositories(name: String): List<RepoShort>
 
 }
