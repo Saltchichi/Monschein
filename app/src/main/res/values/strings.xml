@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Monschein</string>
+    <string name="search_button_text_fr">Renseignez un utilisateur</string>
+    <string name="search_button_text_en">Fill a username</string>
 </resources>
