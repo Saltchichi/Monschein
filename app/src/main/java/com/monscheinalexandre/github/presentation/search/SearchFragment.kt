@@ -15,16 +15,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.monscheinalexandre.github.R
 import com.monscheinalexandre.github.presentation.MainActivity
 
-class SearchFragment : Fragment(), SearchAdapter.OnSearchItemClickListener {
+class SearchFragment : Fragment() {
 
-    private lateinit var button: Button;
-    private lateinit var editText: EditText;
-    private lateinit var progressBar: ProgressBar;
-    private lateinit var recyclerView: RecyclerView;
+    private lateinit var button: Button
+    private lateinit var editText: EditText
+    private lateinit var progressBar: ProgressBar
+    private lateinit var recyclerView: RecyclerView
 
     private val viewModel: SearchViewModel by viewModels()
 
-    private lateinit var adapter : SearchAdapter
+    private lateinit var adapter: SearchAdapter
 
 
     override fun onCreateView(
@@ -32,7 +32,7 @@ class SearchFragment : Fragment(), SearchAdapter.OnSearchItemClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_github_search, container, false)
+        return inflater.inflate(R.layout.fragment_user_search, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,11 +42,11 @@ class SearchFragment : Fragment(), SearchAdapter.OnSearchItemClickListener {
         progressBar = view.findViewById(R.id.progress_bar)
         recyclerView = view.findViewById(R.id.recycler_view)
 
-        adapter = SearchAdapter(requireContext(),this)
+        adapter = SearchAdapter(requireContext())
         recyclerView.adapter = adapter
 
         button.setOnClickListener {
-            viewModel.searchMovie(editText.text.toString())
+            viewModel.searchUser(editText.text.toString())
         }
         editText = view.findViewById(R.id.editInput)
 
@@ -66,15 +66,8 @@ class SearchFragment : Fragment(), SearchAdapter.OnSearchItemClickListener {
             }
             is SearchState.SuccessState -> {
                 progressBar.isVisible = false
-                adapter.setData(state.movies)
+                adapter.setData(state.users)
             }
         }
-    }
-
-    override fun onSearchItemClick(id: String) {
-        val activity : MainActivity? = activity as? MainActivity
-
-        activity?.displayMovieDetail(id)
-
     }
 }

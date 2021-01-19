@@ -11,12 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.monscheinalexandre.github.domain.model.UserShort
 import com.squareup.picasso.Picasso
 
-class SearchAdapter(context: Context, val listener: OnSearchItemClickListener) :
+class SearchAdapter(context: Context) :
     RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
-
-    interface OnSearchItemClickListener {
-        fun onSearchItemClick(id: String)
-    }
 
     private val users: ArrayList<UserShort> = ArrayList()
 
@@ -32,11 +28,11 @@ class SearchAdapter(context: Context, val listener: OnSearchItemClickListener) :
         holder.bind(users[position])
     }
 
-    fun setData(movies: List<UserShort>?) {
+    fun setData(users: List<UserShort>?) {
         this.users.clear()
 
-        movies?.let {
-            this.users.addAll(movies)
+        users?.let {
+            this.users.addAll(users)
         }
 
         notifyDataSetChanged()
@@ -45,19 +41,13 @@ class SearchAdapter(context: Context, val listener: OnSearchItemClickListener) :
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        private val username: TextView = view.findViewById(R.id.user_name)
-        private val avatar: ImageView = view.findViewById(R.id.user_avatar)
-
-        init {
-            view.setOnClickListener {
-                listener.onSearchItemClick(users[adapterPosition].id)
-            }
-        }
+        private val login: TextView = view.findViewById(R.id.login)
+        private val avatar: ImageView = view.findViewById(R.id.avatar)
 
         fun bind(userShort: UserShort) {
-            username.text = userShort.username
+            login.text = userShort.login
 
-            if (userShort.avatar.isNotEmpty() && userShort.username.isNotBlank()) {
+            if (userShort.avatar.isNotEmpty() && userShort.avatar.isNotBlank()) {
                 Picasso.get().load(userShort.avatar).into(avatar)
             } else {
                 avatar.setImageDrawable(null)

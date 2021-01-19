@@ -2,9 +2,9 @@ package com.monscheinalexandre.github.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class GithubUserResponse(
-    @SerializedName("Search")
+data class SearchResponse(
+    @SerializedName("items")
     val users: List<GithubUserShort>,
-    @SerializedName("totalResults")
+    @SerializedName("total_count")
     val resultNumber: Int,
 )
